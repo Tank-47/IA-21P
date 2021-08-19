@@ -1,11 +1,8 @@
 
 body{
-    color: aqua;
+    background-color: lightblue;
 }
-.title{
-    position: relative;
-left:50%;
-}
+
 
 .box{
     position: relative;
