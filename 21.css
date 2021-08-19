@@ -14,7 +14,7 @@ body{
 
 @media only screen and (max-width: 920px) {
     .box{ 
-    top:100px;
+    top:180px;
     position: relative;
     width: 800px;
     height: 800px;
