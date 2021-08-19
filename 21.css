@@ -15,6 +15,17 @@ left:50%;
     background-color: aquamarine;
 }
 
+@media only screen and (max-width: 420px) {
+    .box{ 
+    top:100px;
+    position: relative;
+    width: 800px;
+    height: 800px;
+   
+    background-color: aquamarine;
+    }
+}
+
 .greenBox{  
     position: absolute;
     top: 0;
