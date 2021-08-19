@@ -15,7 +15,7 @@ left:50%;
     background-color: aquamarine;
 }
 
-@media only screen and (max-width: 820px) {
+@media only screen and (max-width: 920px) {
     .box{ 
     top:100px;
     position: relative;
