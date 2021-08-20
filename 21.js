@@ -46,11 +46,11 @@ function shuffleCard(){
     timer = setInterval(function(){
       shuffleAnimation(); 
  
-    }, 40);
+    }, 50);
    
     setTimeout(function(){
         clearInterval(timer);
-    }, 8000);
+    }, 10000);
 }
 
 var moveRight_1 = true;
@@ -117,9 +117,7 @@ function shuffleAnimation(){
                }
     }
      start_game.style.display = "none";
-    setTimeout(function(){
-         btn_deal.style.display = "block"; 
-    },3100);
+    
      
 }
 
