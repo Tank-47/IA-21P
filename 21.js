@@ -46,11 +46,11 @@ function shuffleCard(){
     timer = setInterval(function(){
       shuffleAnimation(); 
  
-    }, 30);
+    }, 40);
    
     setTimeout(function(){
         clearInterval(timer);
-    }, 6000);
+    }, 8000);
 }
 
 var moveRight_1 = true;
