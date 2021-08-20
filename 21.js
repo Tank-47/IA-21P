@@ -42,18 +42,16 @@ function createBorder(greenBox){
 };
 
 
+var stopTime = 0;
 function shuffleCard(){
     timer = setInterval(function(){
       shuffleAnimation(); 
- 
+        stopTime+= 15;   
+        if(stopTime ==3000){
+            clearInterval(timer);
+        } 
     }, 15);
 }
-   
- function stopShuffle(){
-    setTimeout(function(){
-        clearInterval(timer);
-    }, 3000);
- }
 
 var moveRight_1 = true;
 var moveRight_2 = true;
@@ -145,7 +143,6 @@ function takeCard_anim(dis,play){
 
 
 start_game.addEventListener("click", shuffleCard);
-start_game.addEventListener("click", stopShuffle);
 btn_deal.addEventListener("click", start);
 
 
