@@ -43,13 +43,12 @@ function createBorder(greenBox){
 
 
 function shuffleCard(){  
-    setTimeout(function(){
-        clearInterval(timer);
-    }, 3000);
-    
     timer = setInterval(function(){
       shuffleAnimation();      
     }, 15);
+    setTimeout(function(){
+        clearInterval(timer);
+    }, 3010);
   
 }
 
