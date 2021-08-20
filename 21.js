@@ -116,9 +116,7 @@ function shuffleAnimation(){
                }
     }
      start_game.style.display = "none";
-    setTimeout(function(){
-         btn_deal.style.display = "block"; 
-    },3100);
+   
      
 }
 
