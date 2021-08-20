@@ -44,11 +44,69 @@ function createBorder(greenBox){
 
 function shuffleCard(){  
     timer = setInterval(function(){
-      shuffleAnimation();      
+       if(moveRight_1){
+       // console.log(deal.offsetLeft);
+        deal.style.left = deal.offsetLeft + 10 +'px';
+        if(deal.offsetLeft >= 495){
+            moveRight_1 = false;
+        }
+    }
+         else if(!moveRight_1){
+           //  console.log(deal.offsetLeft);
+           // console.log(">=450");
+            deal.style.left = deal.offsetLeft - 10 +'px';
+             if(deal.offsetLeft <= 295){
+                 moveRight_1 = true;
+                }
+        }
+    
+    if(moveRight_2){
+       // console.log(deal_1.offsetLeft);
+        deal_1.style.left = deal_1.offsetLeft -10 +'px';
+        if(deal_1.offsetLeft <= 258){
+            moveRight_2 = false;
+        }
+    }
+    else if(!moveRight_2){
+       // console.log(deal_1.offsetLeft);
+        deal_1.style.left = deal_1.offsetLeft + 10+ 'px';
+        if(deal_1.offsetLeft >= 458){
+            moveRight_2 =true;
+        }
+    }
+    
+    if(moveLeft_1){
+        deal_2.style.left = deal_2.offsetLeft -10 +'px';
+        if(deal_2.offsetLeft <= 88){
+            moveLeft_1 = false;
+        }
+    }
+    else if(!moveLeft_1){
+            deal_2.style.left = deal_2.offsetLeft + 10 +'px';
+            if(deal_2.offsetLeft >= 288){
+            moveLeft_1 = true;           
+               }
+    }
+    
+    if(moveLeft_2){
+        deal_3.style.left = deal_3.offsetLeft -20 +'px';
+        if(deal_3.offsetLeft <= 188){
+            moveLeft_2 = false;
+        }
+    }
+    else if(!moveLeft_2){
+            deal_3.style.left = deal_3.offsetLeft + 20 +'px';
+            if(deal_3.offsetLeft >= 288){
+            moveLeft_2 = true;           
+               }
+    }
+     start_game.style.display = "none";
+   
+          
     }, 15);
     setTimeout(function(){
         clearInterval(timer);
-    }, 3010);
+    }, 3000);
   
 }
 
@@ -58,7 +116,7 @@ var moveLeft_1 = true;
 var moveLeft_2 = true;
 
 //洗牌动画
-function shuffleAnimation(){
+/*function shuffleAnimation(){
     if(moveRight_1){
        // console.log(deal.offsetLeft);
         deal.style.left = deal.offsetLeft + 10 +'px';
@@ -118,7 +176,7 @@ function shuffleAnimation(){
      start_game.style.display = "none";
    
      
-}
+}*/
 
 //玩家发牌动画
 function takeCard_anim(dis,play){
