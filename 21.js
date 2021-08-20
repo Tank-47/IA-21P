@@ -42,15 +42,15 @@ function createBorder(greenBox){
 };
 
 
-function shuffleCard(){
-    timer = setInterval(function(){
-      shuffleAnimation(); 
-         
-    }, 15);
-   
+function shuffleCard(){  
     setTimeout(function(){
         clearInterval(timer);
     }, 3000);
+    
+    timer = setInterval(function(){
+      shuffleAnimation();      
+    }, 15);
+  
 }
 
 var moveRight_1 = true;
