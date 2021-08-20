@@ -49,7 +49,7 @@ function shuffleCard(){
     }, 15);
    
     setTimeout(function(){
-        clearInterval(timer)
+        clearInterval(timer);
     }, 3000);
 }
 
