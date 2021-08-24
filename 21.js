@@ -14,7 +14,7 @@ var play = 'play';
 var AI = 'AI';
 var num = 0;
 var array = new Array(52);
-var ai_takeCardNumber = 0;
+var ai_takeCardNumber = 0;   //ai拿卡次数
 var card = ['11','12','13','14','15','16','17','18','19','20','1a','1b','1c'
 ,'21','22','23','24','25','26','27','28','29','30','2a','2b','2c'
 ,'31','32','33','34','35','36','37','38','39','40','3a','3b','3c'
@@ -42,7 +42,7 @@ function createBorder(greenBox){
 };
 
 
-var stopTime = 0;
+var stopTime = 0;    //洗牌动画设置一个计时器，当stopTime加到3000后清除
 function shuffleCard(){
     timer = setInterval(function(){
       shuffleAnimation(); 
@@ -52,6 +52,7 @@ function shuffleCard(){
         } 
     }, 15);
 }
+
 
 var moveRight_1 = true;
 var moveRight_2 = true;
@@ -123,7 +124,7 @@ function shuffleAnimation(){
      
 }
 
-//玩家发牌动画
+//发牌动画
 function takeCard_anim(dis,play){
      setTimeout(function(){ 
     
@@ -140,11 +141,6 @@ function takeCard_anim(dis,play){
        $("#"+num+play+"e").css({transform:"rotate(0deg)"});
     
 }
-
-
-start_game.addEventListener("click", shuffleCard);
-btn_deal.addEventListener("click", start);
-
 
 
 //计算点数
@@ -184,7 +180,6 @@ var ai = new Ai();
  
 //游戲開始
 function start(){
-    //开局发2张牌
     
     takeCard_anim(250,play);
     setTimeout(function(){
@@ -235,12 +230,12 @@ function start(){
    // ai_card.innerHTML = '<img src="./image/'+ card[ai.card[0]] +'.JPG" alt="card"><img src = "./image/unknow.JPG" style ="margin-left:1em" alt ="card">';
     
     setTimeout(function(){
-         btn_deal.style.display = "none"; 
+         btn_deal.style.display = "none";
+        take_card.style.display = "block";
+        stop_card.style.display = "block";
     },3100);
     start_game.removeEventListener("click", shuffleCard);
     btn_deal.removeEventListener('click', start)
-    take_card.style.display = "block";
-    stop_card.style.display = "block";
     take_card.addEventListener('click', takeCardAnim);  
     stop_card.addEventListener('click', stopCard);
 };
@@ -248,13 +243,13 @@ function start(){
 function takeCardAnim(){
     takeCard_anim(250,play);
     setTimeout(takeCard,700);
-    if(ai.getPoint(ai.card) < 17){
+    /*if(ai.getPoint(ai.card) < 17){
        setTimeout("takeCard_anim(-260,AI)",700);
          setTimeout(ai_takeCard,1400);
     }
     else if(ai.getPoint(ai.card > 21)){
         gameover();
-    }
+    }*/
 }
 
 //拿牌
@@ -268,10 +263,12 @@ function takeCard(){
         console.log("爆牌了，你输了");
         take_card.removeEventListener('click',takeCard);
         btn_deal.removeEventListener('click', start);
-        setTimeout(gameover,2000);
+        setTimeout(gameover,1000);
     }
 }
 
+
+//停牌动画
 function stopCardAnim(){
      setTimeout("takeCard_anim(-260,AI)",500);
      setTimeout(ai_takeCard,1200);
@@ -289,7 +286,7 @@ function stopCardAnim(){
     }
 }
 
-//停牌
+//点击停牌后，ai开始拿牌
 function stopCard(){
     take_card.removeEventListener('click',takeCard);
     btn_deal.removeEventListener('click', start);
@@ -313,42 +310,54 @@ function gameover(){
     
     if(player.getPoint(player.card)==21){
         if(ai.getPoint(ai.card)==21){
-            showTips("平手");
+            showTips("平手,再来一局");
+            setTimeout(reset,2000);
         }
         else if(ai.getPoint(ai.card)<21){
             showTips("你贏了");
+            setTimeout(win,2000);
         } 
         else if(ai.getPoint(ai.card)>21){
             showTips("你贏了");
+            setTimeout(win,2000);
         }
     }
     
     else if(player.getPoint(player.card)>21){
         showTips("你爆牌輸了");
+        setTimeout(lost,2000);
     }
 
     else if(ai.getPoint(ai.card)>21){
        showTips("對手爆牌，你贏了");
+        setTimeout(win,2000);
        }
 
        else if(player.getPoint(player.card)<21){
         if(ai.getPoint(ai.card) == player.getPoint(player.card)){
-            showTips("平手");
+            showTips("平手，再来一局");
+            setTimeout(reset,2000);
         }
         else if(ai.getPoint(ai.card) > player.getPoint(player.card)){
-            showTips("你輸了");        
+            showTips("你輸了");
+            setTimeout(lost,2000);
+            setTimeout(reset,2000);
         }
         else if(ai.getPoint(ai.card) < player.getPoint(player.card)){
             showTips("你贏了");
+            setTimeout(win,2000);
+            setTimeout(reset,2000);
         }
     }
 
     else if(player.card.length == 2 && player.getPoint(player.card)){
         showTips("你是blackJack，你赢了");
+        setTimeout(win,2000);
     }
 
     else if(ai.card.length == 2 && ai.getPoint(ai.card)){
         showTips("你的對手是blackJack，你輸了");
+        setTimeout(lost,2000);
     }
    
 }
@@ -361,10 +370,17 @@ function reset() {
         ai_card.innerHTML = '';
         player_card.innerHTML = '';
         tips.innerHTML = '';
+        start_game.style.display = "block";
         btn_deal.style.display = "none";
         take_card.style.display = "none";
         stop_card.style.display = "none";
-        num = 0;
+        start_game.addEventListener("click", shuffleCard);
+        btn_deal.addEventListener("click", start);
+        stopTime = 0;
+        moveRight_1 = true;
+        moveRight_2 = true;
+        moveLeft_1 = true;
+        moveLeft_2 = true;
         for(var i = 0; i < 52; i++) {
             array[i] = i;
         }
@@ -411,7 +427,7 @@ function showCard(cards){
     return img;
 }
 
-//計算牌的點數
+//計算牌的點數，A是否等于11或者1
 function Point(i ,flag){        
     if(flag){
         if(i === 0 || i === 13 || i=== 26 || i === 39){
@@ -457,8 +473,17 @@ function Point(i ,flag){
     }
 }
 
+//显示输赢
 function showTips(ms){
     tips.innerHTML = ms;
      tips.classList.add("fadeIn");
+}
+
+function win(){
+    console.log("win");
+}
+
+function lost(){
+    console.log("lost");
 }
 
