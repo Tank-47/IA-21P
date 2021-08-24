@@ -113,11 +113,42 @@ body{
     width:6em;
 }
 
-.btn{
+.btn {
     position: absolute;
-    top:90%;
+    top:80%;
+    
     right:5%;
 }
+
+button{
+position: relative;
+    height: 50px;
+    width: 100px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    background: #fff;
+    color: #111;
+    font-size: 17px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer
+}
+
+
+
+.take_card{
+   display:inline;
+margin-bottom: 10px;
+}
+
+.stop_card{
+    display:inline-flex; 
+}
+
+
+
+
 
 .tips{
     position: absolute;
@@ -126,3 +157,4 @@ body{
     top:45%;
     color: black;
 }
+
